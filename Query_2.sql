@@ -162,3 +162,36 @@ SELECT
 FROM    
     sched
 GROUP BY den_ned, iddiscpl;
+/*
+Предложение HAVING при группировке
+*/
+SELECT
+ 	`pnamedisc` as 'Наименование дисциплины', COUNT(pnamedisc) as 'Количество повторений' 
+FROM    
+    discipl
+GROUP BY pnamedisc
+HAVING COUNT(pnamedisc) > 1;
+SELECT
+ 	`pnamedisc` as 'Наименование дисциплины', COUNT(pnamedisc) as 'Количество повторений' 
+FROM    
+    discipl
+WHERE pnamedisc like '%базы данных%' 
+GROUP BY pnamedisc
+HAVING COUNT(pnamedisc) > 0;
+/*
+Самостоятельный запрос по использованию HAVING и WHERE с агрегатными функциями
+*/
+SELECT
+ 	`pnamedisc` as 'Наименование дисциплины', MIN(hours) as 'Количество часов' 
+FROM    
+    discipl
+WHERE pnamedisc like '%базы данных%' 
+GROUP BY pnamedisc
+HAVING MIN(hours) > 30;
+SELECT
+ 	`pnamedisc` as 'Наименование дисциплины', MAX(hours) as 'Количество часов' 
+FROM    
+    discipl
+GROUP BY pnamedisc
+HAVING MAX(hours) > 70;
+
